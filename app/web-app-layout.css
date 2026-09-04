@@ -1,0 +1,18 @@
+.web-app {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 9px;
+}
+
+.web-app iframe {
+  flex: 1;
+  min-height: 0;
+  height: auto;
+}
+
+.web-app > a {
+  position: static;
+  flex: 0 0 auto;
+  margin: 8px 40px 9px;
+  padding: 8px;
+}

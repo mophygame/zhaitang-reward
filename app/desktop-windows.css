@@ -1,0 +1,75 @@
+.file-window,
+.ghost-game-window {
+  min-width: min(340px, 100%);
+  min-height: min(240px, calc(100% - 76px));
+  max-width: 100%;
+  max-height: calc(100% - 76px);
+}
+
+.file-window > header,
+.ghost-game-window > header {
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.file-window > header:active,
+.ghost-game-window > header:active {
+  cursor: grabbing;
+}
+
+.file-window.child-file-window {
+  z-index: 12;
+  inset: 15% 7% 6% 20%;
+  box-shadow: 0 30px 80px #000d;
+}
+
+.child-file-window > .file-toolbar strong {
+  margin-left: auto;
+  color: #777;
+  font-size: 8px;
+  font-weight: 500;
+}
+
+.window-transforming {
+  transition: none !important;
+  box-shadow: 0 28px 75px #000d !important;
+}
+
+.window-drag-label {
+  margin-left: 8px;
+  color: #888;
+  font-size: 7px;
+  font-weight: 400;
+  opacity: .75;
+}
+
+.ghost-game-window > header .window-drag-label {
+  margin-left: auto;
+  margin-right: 12px;
+  color: #b8afa2;
+}
+
+.window-resize-handle {
+  position: absolute;
+  z-index: 30;
+  right: 0;
+  bottom: 0;
+  width: 23px;
+  height: 23px;
+  cursor: nwse-resize;
+  touch-action: none;
+  background: linear-gradient(135deg, transparent 0 45%, #8d8d8d 46% 52%, transparent 53% 62%, #8d8d8d 63% 69%, transparent 70% 79%, #8d8d8d 80% 86%, transparent 87%);
+  opacity: .8;
+}
+
+.window-resize-handle:hover {
+  opacity: 1;
+  background-color: #dfeeff;
+}
+
+@media(max-width:700px){
+  .window-drag-label{display:none}
+  .window-resize-handle{width:29px;height:29px}
+  .file-window.child-file-window{inset:12% 3% 4% 8%}
+}

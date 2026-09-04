@@ -1,0 +1,8 @@
+.monitor-frame {
+  aspect-ratio: auto;
+  height: min(620px, 82vh);
+}
+
+.monitor-stand {
+  top: calc(50% + min(310px, 41vh) - 6px);
+}

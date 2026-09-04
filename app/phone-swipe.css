@@ -1,0 +1,18 @@
+.home-pages {
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.home-pages.dragging {
+  cursor: grabbing;
+  transition: none;
+}
+
+.home-page {
+  flex-shrink: 0;
+  backface-visibility: hidden;
+}

@@ -1,0 +1,46 @@
+.interactive-desktop-files{
+  position:absolute;
+  left:15px;
+  right:260px;
+  top:130px;
+  bottom:52px;
+  display:block;
+  padding:0;
+  overflow:hidden;
+  background:#08110d18;
+  user-select:none;
+}
+
+.interactive-desktop-files>button{
+  position:absolute;
+  width:72px;
+  height:68px;
+  padding:4px 2px;
+  touch-action:none;
+  transition:background .12s,box-shadow .12s,transform .12s;
+}
+
+.interactive-desktop-files>button>i{font-size:27px}
+.interactive-desktop-files>button>span{font-size:7px;line-height:1.15}
+.interactive-desktop-files>button.dragging{z-index:10;cursor:grabbing;opacity:.86;transform:scale(1.05);box-shadow:0 8px 22px #0007;background:#ffffff25}
+.interactive-desktop-files>button.drop-target{background:#4b9be34d;outline:2px solid #8bc9ff;transform:scale(1.06)}
+.interactive-desktop-files>button.folder.drop-target>i{filter:drop-shadow(0 0 8px #9fd4ff)}
+.interactive-desktop-files>button.desktop-app>i{display:grid;place-items:center;width:42px;height:42px;margin:0 auto;border:1px solid #c4a5d2;border-radius:11px;background:linear-gradient(145deg,#623d75,#23192d);color:#fff;font:700 21px serif;filter:drop-shadow(0 5px 6px #0006)}
+
+.file-window:has(.folder-contents)>.file-toolbar{display:none}
+.folder-contents{min-height:0;flex:1;display:flex;flex-direction:column;background:#fff;color:#252525;font-family:"Segoe UI","PingFang TC",sans-serif;text-align:left}
+.folder-path-drop{height:45px;display:flex;align-items:center;gap:8px;padding:7px 12px;border-bottom:1px solid #ddd;background:#fafafa;font-size:9px}
+.folder-path-drop b{padding:7px 10px;border:1px solid #c8d8e8;border-radius:5px;background:#eaf4ff;color:#175d9f}
+.folder-path-drop strong{font-size:10px}.folder-path-drop em{margin-left:auto;color:#7b7b7b;font-size:8px;font-style:normal}
+.folder-path-drop:has(b:hover){background:#eef7ff}
+.folder-content-head,.folder-item-list>button{display:grid;grid-template-columns:minmax(200px,1.2fr) 100px minmax(180px,1fr);align-items:center}
+.folder-content-head{height:31px;padding:0 14px;border-bottom:1px solid #ddd;background:#f5f5f5;color:#777;font-size:8px}
+.folder-item-list{min-height:0;flex:1;overflow:auto}
+.folder-item-list>button{position:relative;width:100%;min-height:48px;padding:5px 14px;border:0;border-bottom:1px solid #eee;background:white;color:#333;text-align:left;cursor:grab}
+.folder-item-list>button:hover{background:#eaf3ff}.folder-item-list>button:active{cursor:grabbing}
+.folder-item-list>button>span{display:flex;align-items:center;gap:9px;min-width:0}.folder-item-list>button>span i{font-size:22px;font-style:normal}.folder-item-list>button>span b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:9px}
+.folder-item-list small{font-size:8px;color:#666}.folder-item-list p{margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#777;font-size:8px}.folder-item-list>button>em{position:absolute;right:8px;top:4px;color:#2d72af;font-size:7px;font-style:normal}
+.empty-folder{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#888;text-align:center}.empty-folder i{font-size:53px;font-style:normal}.empty-folder b{margin-top:8px;font-size:13px}.empty-folder p{font-size:9px}
+.folder-drop-hint{padding:7px 12px;border-top:1px solid #ddd;background:#fafafa;color:#777;font-size:8px}
+
+@media(max-width:800px){.interactive-desktop-files{right:8px;top:120px}.interactive-desktop-files>button{width:64px}.folder-content-head,.folder-item-list>button{grid-template-columns:minmax(145px,1fr) 80px}.folder-content-head span:last-child,.folder-item-list p{display:none}.folder-path-drop em{display:none}}

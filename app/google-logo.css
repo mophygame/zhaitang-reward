@@ -1,0 +1,8 @@
+.google-app .google-logo span {
+  color: transparent;
+  text-shadow: none;
+  letter-spacing: 0;
+  background: linear-gradient(90deg, #ea4335 0 24%, #fbbc05 24% 48%, #4285f4 48% 73%, #34a853 73% 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+}

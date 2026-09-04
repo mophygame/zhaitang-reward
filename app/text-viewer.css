@@ -1,0 +1,7 @@
+.file-window:has(.text-viewer)>.file-toolbar{display:none}
+.text-viewer{min-height:0;flex:1;display:flex;flex-direction:column;background:#fff;color:#171717;font-family:"Segoe UI","PingFang TC",sans-serif}
+.notepad-menubar{height:31px;display:flex;align-items:center;padding:0 6px;border-bottom:1px solid #ddd;background:#fafafa}.notepad-menubar button{height:27px;padding:0 10px;border:0;background:transparent;color:#222;font-size:9px}.notepad-menubar button:hover{background:#e8e8e8}.notepad-menubar a{margin-left:auto;padding:5px 9px;border-radius:4px;background:#e7f0fb;color:#185e9d;text-decoration:none;font-size:8px}
+.notepad-paper{min-height:0;flex:1;overflow:auto;padding:22px 25px;background:#fff;color:#111;white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.8 "Microsoft JhengHei","PingFang TC",sans-serif;outline:none;cursor:text;user-select:text}
+.text-viewer footer{height:24px;display:flex;justify-content:flex-end;gap:22px;padding:5px 11px;border-top:1px solid #ddd;background:#f6f6f6;color:#666;font-size:7px}
+.notepad-state{min-height:0;flex:1;display:flex;align-items:center;justify-content:center;gap:10px;color:#666;font-size:10px}.notepad-state i{width:18px;height:18px;border:2px solid #ccc;border-top-color:#2878c7;border-radius:50%;animation:notepad-spin .8s linear infinite}.notepad-state a{color:#185e9d}@keyframes notepad-spin{to{transform:rotate(360deg)}}
+@media(max-width:700px){.notepad-paper{padding:17px;font-size:13px}.notepad-menubar a{font-size:7px}.text-viewer footer{gap:10px}}

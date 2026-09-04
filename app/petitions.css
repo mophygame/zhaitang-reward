@@ -1,0 +1,47 @@
+.file-window:has(.petition-explorer){inset:4% 5%;border-radius:8px}
+.file-window:has(.petition-explorer)>.file-toolbar{display:none}
+.petition-explorer{min-height:0;flex:1;display:flex;flex-direction:column;background:#fff;color:#242424;font-family:"Segoe UI","PingFang TC",sans-serif;text-align:left}
+.explorer-address{height:42px;display:flex;align-items:center;gap:7px;padding:6px 10px;border-bottom:1px solid #ddd;background:#fafafa}
+.explorer-address button{width:27px;height:27px;border:0;border-radius:5px;background:transparent;color:#444;cursor:pointer}
+.explorer-address button:hover{background:#e7e7e7}
+.explorer-address span,.explorer-address label{height:28px;display:flex;align-items:center;border:1px solid #d6d6d6;border-radius:5px;background:#fff;color:#555;font-size:9px}
+.explorer-address span{flex:1;padding:0 10px}
+.explorer-address label{width:180px;padding:0 9px;color:#888}
+.explorer-body{min-height:0;flex:1;display:grid;grid-template-columns:142px 1fr}
+.explorer-body>aside{display:flex;flex-direction:column;gap:3px;padding:13px 8px;border-right:1px solid #e2e2e2;background:#f7f7f7;font-size:9px}
+.explorer-body>aside b{padding:5px 8px;color:#555}
+.explorer-body>aside span{padding:6px 12px;border-radius:4px}
+.explorer-body>aside span:first-of-type,.explorer-body>aside span:hover{background:#e5edf6}
+.explorer-body>aside hr{width:100%;border:0;border-top:1px solid #ddd}
+.explorer-body>main{min-width:0;overflow:auto;padding:12px 14px}
+.explorer-body>main>header{height:auto!important;display:flex!important;align-items:center!important;justify-content:space-between!important;padding:0 0 12px!important;border:0!important;background:transparent!important;color:#222!important;position:static!important}
+.explorer-body h2{margin:0;font-size:17px}.explorer-body header p{margin:4px 0 0;color:#777;font-size:9px}
+.folder-actions{display:flex;gap:5px}.folder-actions button{padding:6px 9px;border:1px solid #d6d6d6;border-radius:5px;background:#fff;color:#333;font-size:8px}
+.folder-actions button:first-child{background:#246fbd;color:white;border-color:#246fbd}
+.folder-note{margin:0 0 10px;padding:9px 11px;border-left:3px solid #d3a126;background:#fff6d8;color:#63501c;font-size:9px;line-height:1.5}
+.petition-explorer.urgent .folder-note{border-left-color:#c9322b;background:#fff0ef;color:#872e2a}
+.file-table{border:1px solid #ddd;border-radius:5px;overflow:hidden}
+.file-table-head,.file-table>button{display:grid;grid-template-columns:minmax(260px,2fr) minmax(100px,.8fr) minmax(90px,.65fr) 70px;align-items:center}
+.file-table-head{height:29px;padding:0 9px;border-bottom:1px solid #ddd;background:#f4f4f4;color:#666;font-size:8px}
+.file-table>button{width:100%;min-height:43px;padding:4px 9px;border:0;border-bottom:1px solid #ececec;background:#fff;color:#333;text-align:left;cursor:pointer;font-size:8px}
+.file-table>button:last-child{border-bottom:0}.file-table>button:hover,.file-table>button:focus-visible{background:#eaf3ff;outline:0}
+.petition-file-name{display:flex;align-items:center;gap:8px;min-width:0}.petition-file-name i{font-size:17px;font-style:normal}.petition-file-name b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:9px}.file-table .unread{color:#b62c27;font-weight:700}
+.folder-filler{padding:25px;text-align:center;color:#999}.folder-filler span{font-size:24px}.folder-filler p{margin:4px;font-size:8px}
+.petition-explorer>footer{height:25px;display:flex;justify-content:space-between;padding:5px 11px;border-top:1px solid #ddd;background:#fafafa;color:#777;font-size:8px}
+.petition-reader{min-height:0;flex:1;display:flex;flex-direction:column;background:#d9dde2;color:#222}
+.reader-commandbar{height:39px;display:flex;align-items:center;justify-content:space-between;padding:5px 10px;border-bottom:1px solid #bbb;background:#f5f5f5}
+.reader-commandbar button{padding:5px 9px;border:1px solid #ccc;border-radius:4px;background:#fff;color:#333;font-size:8px;cursor:pointer}.reader-commandbar span{color:#777;font-size:8px}
+.petition-scroll{min-height:0;flex:1;overflow:auto;padding:24px}
+.petition-paper{position:relative;width:min(650px,94%);min-height:100%;margin:auto;padding:42px 55px 30px;background:#fff;color:#202020;box-shadow:0 5px 24px #0003;font-family:"Noto Serif TC","Songti TC",serif}
+.official-mark{position:absolute;right:34px;top:28px;padding:5px 9px;border:2px solid #ad2f2a;color:#ad2f2a;font-weight:800;letter-spacing:.16em;transform:rotate(-3deg)}
+.document-number{margin:0;color:#777;font:9px sans-serif;letter-spacing:.08em}.petition-paper h1{margin:28px 45px 24px;text-align:center;font-size:22px;line-height:1.5}
+.petition-paper dl{margin:0 0 22px;border-top:2px solid #333;border-bottom:1px solid #aaa}.petition-paper dl div{display:grid;grid-template-columns:90px 1fr;border-bottom:1px solid #ddd}.petition-paper dl div:last-child{border:0}.petition-paper dt,.petition-paper dd{margin:0;padding:7px 9px;font-size:10px}.petition-paper dt{background:#f2f2f2;font-weight:700}.document-status{color:#a52e29;font-weight:700}
+.official-divider{display:flex;align-items:center;gap:10px;margin:20px 0}.official-divider:before,.official-divider:after{content:"";height:1px;flex:1;background:#999}.official-divider i{display:grid;place-items:center;width:27px;height:27px;border:1px solid #555;border-radius:50%;font-style:normal;font-weight:700}
+.document-body{white-space:pre-wrap;font-size:12px;line-height:1.9;letter-spacing:.035em}
+.imperial-handwriting{position:relative;width:58%;margin:34px 3% 12px auto;padding:17px 19px 13px;border:0;background:transparent;color:#b32624;font-family:"Klee One","DFKai-SB","BiauKai","KaiTi",cursive;transform:rotate(-1.4deg);text-align:left}
+.imperial-handwriting:before{content:"";position:absolute;left:-8px;right:-4px;top:7px;bottom:4px;border:2px solid #b3262488;border-radius:48% 43% 46% 42%;transform:rotate(.8deg);pointer-events:none}
+.imperial-handwriting p{position:relative;margin:7px 30px 7px 0;white-space:pre-wrap;font-size:16px;font-weight:700;line-height:1.55;letter-spacing:.06em;text-decoration-thickness:1px;text-shadow:.2px .2px #b32624}
+.imperial-handwriting p:nth-of-type(even){transform:rotate(.7deg)}
+.imperial-stamp{display:block;width:82px;height:auto;margin:-5px -4px -5px auto;object-fit:contain;filter:drop-shadow(0 1px 1px #78120f33);transform:rotate(4deg)}
+.petition-paper footer{display:flex;justify-content:space-between;margin-top:38px;padding-top:10px;border-top:1px solid #bbb;color:#888;font:8px sans-serif}
+@media(max-width:800px){.file-window:has(.petition-explorer){inset:3% 2%}.explorer-body{grid-template-columns:1fr}.explorer-body>aside{display:none}.explorer-address label{display:none}.file-table-head,.file-table>button{grid-template-columns:minmax(190px,2fr) 85px 75px}.file-table-head span:last-child,.file-table>button>span:last-child{display:none}.folder-actions{display:none}.petition-scroll{padding:10px}.petition-paper{width:100%;padding:34px 25px 25px}.petition-paper h1{margin-left:15px;margin-right:15px;font-size:18px}.imperial-handwriting{width:78%}.imperial-handwriting p{font-size:14px}.imperial-stamp{width:70px}}

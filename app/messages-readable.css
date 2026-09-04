@@ -1,0 +1,127 @@
+.messages-app,
+.messages-header,
+.message-nav,
+.thread-list,
+.thread-list > button,
+.message-stream,
+.message-compose {
+  background: #fff !important;
+  color: #111 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.messages-header { height: 48px; padding-bottom: 9px; }
+.messages-header span { color: #1672d6; font-size: 14px; }
+.messages-app > h1 { margin-top: 7px; font-size: 31px; }
+.message-search { padding: 9px 11px; background: #f0f0f2; color: #555; }
+.message-search input { color: #111; font-size: 14px; }
+.thread-list { height: calc(100% - 139px); }
+.thread-list > button { grid-template-columns: 48px 1fr 12px; min-height: 82px; gap: 10px; padding: 10px 11px; }
+.thread-list > button > i,
+.message-nav i { background: #ececef; color: #161616; border: 1px solid #d5d5d8; }
+.thread-list > button > i { width: 46px; height: 46px; font-size: 20px; }
+.thread-list header b { max-width: 155px; color: #111; font-size: 14px; }
+.thread-list header {
+  position: static;
+  z-index: auto;
+  width: auto;
+  height: auto;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent !important;
+  color: #111;
+  box-shadow: none;
+}
+.thread-list time { color: #666; font-size: 10px; }
+.thread-list p { margin-top: 6px; color: #333; font-size: 12px; line-height: 1.45; }
+.thread-list em { color: #c72f2b; font-weight: 700; }
+
+.message-nav { position: relative; height: 82px; }
+.message-nav > div {
+  position: absolute;
+  left: 50%;
+  bottom: 7px;
+  width: 190px;
+  transform: translateX(-50%);
+  text-align: center;
+}
+.message-nav i { width: 36px; height: 36px; font-size: 16px; }
+.message-nav b { max-width: 190px; color: #111; font-size: 11px; }
+.message-nav > button { color: #1672d6 !important; }
+.message-stream { height: calc(100% - 82px); padding: 13px 11px 66px; }
+.conversation-date { color: #666; font-size: 10px; }
+.message-line { margin-bottom: 13px; }
+.message-line > small { color: #666; font-size: 9px; }
+.message-bubble {
+  max-width: 84%;
+  padding: 10px 12px;
+  border: 1px solid #d6d6da;
+  background: #f2f2f4;
+  color: #111;
+}
+.message-line.out .message-bubble {
+  border-color: #b8d6f7;
+  background: #e8f3ff;
+  color: #111;
+}
+.message-line.draft .message-bubble {
+  border: 2px dashed #d75a53;
+  background: #fff;
+  color: #111;
+}
+.message-bubble em { margin-bottom: 5px; color: #444; font-size: 14px; font-weight: 700; line-height: 1.55; opacity: 1; }
+.message-line.draft .message-bubble em { color: #b52f2a; }
+.message-bubble p { color: #111; font-size: 14px; line-height: 1.55; }
+.message-line > span { color: #555; font-size: 9px; }
+.message-compose { padding-top: 8px; border-top-color: #d4d4d4; }
+.message-compose span { color: #555; background: #fff; font-size: 12px; }
+
+/* Force the Messages app to stay in a clean light theme. */
+.messages-app,
+.messages-app * {
+  color-scheme: light;
+  text-shadow: none !important;
+}
+
+.conversation-view,
+.conversation-view .message-stream,
+.conversation-view .message-line,
+.conversation-view .message-bubble,
+.conversation-view .message-bubble em,
+.conversation-view .message-bubble p,
+.conversation-view .message-line.out .message-bubble,
+.conversation-view .message-line.draft .message-bubble {
+  background: #fff !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  color: #111 !important;
+}
+
+.conversation-view .message-bubble {
+  border: 1px solid #d8d8dc !important;
+}
+
+.conversation-view .message-line.out .message-bubble {
+  border-color: #9fc7ed !important;
+}
+
+.conversation-view .message-line.draft .message-bubble {
+  border: 2px dashed #d75a53 !important;
+}
+
+.conversation-view .message-nav i,
+.thread-list > button > i {
+  background: #fff !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  color: #111 !important;
+}
+
+.conversation-view .message-compose button {
+  border: 1px solid #cfcfd3 !important;
+  background: #fff !important;
+  color: #111 !important;
+}

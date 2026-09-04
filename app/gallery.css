@@ -1,0 +1,42 @@
+.device{width:min(390px,92vw);height:min(780px,92vh);transform:none}
+.phone-help{left:calc(50% + 235px)}
+.phone-app{padding-top:25px}
+.phone-nav{height:52px;background:#fbfbfbcc;backdrop-filter:blur(18px)}
+.phone-nav b{font-size:16px}
+.ios-album-head{position:relative;padding:22px 15px 12px;background:#fff}
+.ios-album-head small{display:block;color:#888;font-size:10px;margin-bottom:3px}
+.ios-album-head b{display:block;font-size:26px;letter-spacing:-.04em}
+.ios-album-head span{position:absolute;right:15px;bottom:15px;color:#888;font-size:10px}
+.ios-filter{display:flex;gap:6px;padding:0 12px 12px;background:#fff}
+.ios-filter button{border:0;border-radius:16px;background:#ececec;color:#777;padding:6px 12px;font-size:9px}
+.ios-filter button.active{background:#282828;color:#fff}
+.gallery-app{height:100%;overflow:hidden;display:flex;flex-direction:column}
+.gallery-scroll{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding-bottom:76px;background:#fff}
+.photo-group h3{display:flex;justify-content:space-between;align-items:center;margin:0;padding:12px 13px 7px;background:#fff;color:#202020;font-size:15px}
+.photo-group h3 small{color:#8b8b8f;font-size:9px;font-weight:400}
+.gallery-grid{grid-template-columns:repeat(3,1fr);gap:2px;padding:0;background:#fff}
+.gallery-grid button{aspect-ratio:1}
+.gallery-grid img{display:block;width:100%;height:100%;object-fit:cover}
+.ios-tabbar{position:absolute;bottom:0;left:0;right:0;height:67px;display:flex;justify-content:space-around;padding-top:8px;background:#fafafae8;border-top:1px solid #d5d5d5;backdrop-filter:blur(18px)}
+.ios-tabbar button{border:0;background:none;color:#8d8d91;font-size:19px;min-width:60px}
+.ios-tabbar button.active{color:#b13d31}
+.ios-tabbar small{display:block;font-size:8px;margin-top:3px}
+.photo-detail{height:100%;padding:0;background:#050505;color:white;position:relative}
+.ios-photo-nav{height:58px;display:grid;grid-template-columns:1fr auto 1fr;align-items:end;padding:0 12px 10px;background:#111}
+.ios-photo-nav button{border:0;background:none;color:#e2a59e;padding:0;font-size:11px;text-align:left}
+.ios-photo-nav button:last-child{text-align:right;color:white;letter-spacing:.1em}
+.ios-photo-nav b{font-size:10px}
+.photo-date{display:block;text-align:center;background:#111;color:#aaa;font-size:8px;padding-bottom:8px}
+.big-photo{display:block;width:100%;height:470px;border-radius:0;box-shadow:none;background:#111;margin:0;object-fit:contain;touch-action:pan-y;user-select:none;cursor:grab}
+.photo-caption{position:absolute;left:14px;right:14px;bottom:102px;text-align:left;text-shadow:0 1px 4px #000}
+.photo-caption b{font-size:12px;margin:0}
+.photo-caption p{margin:5px 0 0;padding:6px 8px;background:#0009;border-left:2px solid #c84f45;font-size:8px}
+.photo-filmstrip{position:absolute;left:8px;right:8px;bottom:58px;height:62px;display:flex;justify-content:flex-start;gap:4px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;touch-action:pan-x;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+.photo-filmstrip::-webkit-scrollbar{display:none}
+.photo-filmstrip button{flex:0 0 auto;width:32px;aspect-ratio:9/16;height:auto;padding:0;border:2px solid transparent;background:none;opacity:.62;overflow:hidden}
+.photo-filmstrip button.active{border-color:white;opacity:1}
+.photo-filmstrip img{display:block;width:100%;height:100%;object-fit:cover}
+.photo-toolbar{position:absolute;left:0;right:0;bottom:0;height:55px;display:flex;align-items:center;justify-content:space-around;background:#181818e8;border-top:1px solid #333}
+.photo-toolbar button{width:48px;border:0;background:none;color:#fff;font-size:25px;cursor:pointer}
+.photo-toolbar button:disabled{opacity:.25}
+@media(max-width:700px){.device{width:min(390px,94vw);height:min(780px,88vh)}.phone-help{display:none}.big-photo{height:min(470px,54vh)}}

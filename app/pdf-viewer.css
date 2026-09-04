@@ -1,0 +1,6 @@
+.file-window:has(.pdf-file-content)>.file-toolbar{display:none}
+.pdf-file-content{min-height:0;flex:1;display:flex;flex-direction:column;background:#45484c;color:#fff}
+.pdf-toolbar{height:35px;display:grid;grid-template-columns:90px 1fr 120px;align-items:center;padding:0 10px;background:#323437;border-bottom:1px solid #111;font-size:8px}
+.pdf-toolbar span{color:#bbb}.pdf-toolbar b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center;font-size:9px}.pdf-toolbar a{justify-self:end;color:#a9d4ff;text-decoration:none}
+.pdf-viewer{min-height:0;flex:1;width:100%;border:0;background:#686b70}
+@media(max-width:700px){.pdf-toolbar{grid-template-columns:1fr auto}.pdf-toolbar span{display:none}.pdf-toolbar b{text-align:left}.pdf-toolbar a{font-size:7px}}

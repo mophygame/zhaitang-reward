@@ -1,0 +1,53 @@
+.calendar-widget header b { font-size: 15px; }
+.calendar-widget header span { font-size: 9px; }
+.weekdays i { font-size: 8px; font-weight: 700; }
+.month-grid > div { min-height: 42px; padding: 4px 2px; }
+.month-grid b { font-size: 10px; }
+.month-grid span { margin-top: 3px; font-size: 6.5px; line-height: 1.2; }
+
+.notes-widget {
+  position: relative;
+  border: 0;
+  border-radius: 3px;
+  background: linear-gradient(#fff1b7, #f3dda0);
+  box-shadow: 0 9px 22px #0004;
+  color: #4b382d;
+  font-family: "Klee One", "Hannotate TC", "DFKai-SB", "KaiTi", cursive;
+  backdrop-filter: none;
+}
+
+.notes-widget::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(transparent 0 26px, #b97f6628 27px 28px);
+}
+
+.notes-widget header,
+.notes-widget ol { position: relative; z-index: 1; }
+.notes-widget header b { font-family: inherit; font-size: 16px; }
+.notes-widget header span { color: #725e42; font-size: 9px; }
+.notes-widget li {
+  margin-bottom: 10px;
+  font-family: inherit;
+  font-size: 9.5px;
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+.widget-page .notes-widget {
+  background: #fff1b7 !important;
+  background-color: #fff1b7 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.widget-page .notes-widget header,
+.widget-page .notes-widget ol,
+.widget-page .notes-widget li {
+  background: transparent !important;
+  box-shadow: none !important;
+}

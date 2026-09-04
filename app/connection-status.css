@@ -1,0 +1,47 @@
+.desktop-topbar .connection-status {
+  display: flex;
+  align-items: center;
+  color: #c6cec9;
+}
+
+.connection-status i {
+  position: relative;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin: 0 6px 0 2px;
+  border: 1px solid #b9ffd0;
+  border-radius: 50%;
+  background: #3ee276;
+  box-shadow: 0 0 7px #3ee276, 0 0 14px #3ee27688;
+  animation: connection-breathe 1.8s ease-in-out infinite;
+}
+
+.connection-status i::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border: 1px solid #53ea80;
+  border-radius: 50%;
+  animation: connection-pulse 1.8s ease-out infinite;
+}
+
+.connection-status strong {
+  color: #7ef59f;
+  font-size: 9px;
+}
+
+@keyframes connection-breathe {
+  0%, 100% { opacity: .8; transform: scale(.9); }
+  50% { opacity: 1; transform: scale(1.12); }
+}
+
+@keyframes connection-pulse {
+  0% { opacity: .85; transform: scale(.55); }
+  70%, 100% { opacity: 0; transform: scale(1.5); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .connection-status i,
+  .connection-status i::after { animation: none; }
+}

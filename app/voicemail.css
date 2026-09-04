@@ -1,0 +1,4 @@
+.voicemail p{white-space:pre-line;max-height:132px;overflow-y:auto;padding-right:4px}
+.call-row{min-height:66px}
+.call-row b{font-size:11px;line-height:1.25}
+.call-row small.contact-formal{display:none}

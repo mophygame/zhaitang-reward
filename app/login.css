@@ -1,0 +1,79 @@
+.login-screen{
+  position:fixed;
+  inset:0;
+  min-height:100svh;
+  overflow:hidden;
+  background-color:#d9c1c9;
+  background-image:url("/ui/bg_login_desktop.png");
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:cover;
+}
+
+.login-screen:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(180deg,transparent 55%,#3a102538 100%);
+}
+
+.login-effects{position:absolute;z-index:1;inset:0;overflow:hidden;pointer-events:none}
+.login-sparkle{position:absolute;left:var(--sparkle-x);bottom:-8%;width:var(--sparkle-size);height:var(--sparkle-size);border-radius:50%;background:#fff9cf;box-shadow:0 0 8px #fff,0 0 18px #ffdf8e,0 0 32px #ff86b8;opacity:0;animation:login-sparkle-rise var(--sparkle-time) ease-in-out infinite;animation-delay:var(--sparkle-delay)}
+.login-sparkle:nth-child(1){--sparkle-x:5%;--sparkle-size:5px;--sparkle-time:6.2s;--sparkle-delay:-1s}.login-sparkle:nth-child(2){--sparkle-x:12%;--sparkle-size:9px;--sparkle-time:8s;--sparkle-delay:-6s}.login-sparkle:nth-child(3){--sparkle-x:19%;--sparkle-size:4px;--sparkle-time:7s;--sparkle-delay:-3s}.login-sparkle:nth-child(4){--sparkle-x:28%;--sparkle-size:7px;--sparkle-time:9s;--sparkle-delay:-7s}.login-sparkle:nth-child(5){--sparkle-x:36%;--sparkle-size:5px;--sparkle-time:6.8s;--sparkle-delay:-4s}.login-sparkle:nth-child(6){--sparkle-x:44%;--sparkle-size:10px;--sparkle-time:9.5s;--sparkle-delay:-2s}.login-sparkle:nth-child(7){--sparkle-x:53%;--sparkle-size:5px;--sparkle-time:7.6s;--sparkle-delay:-6s}.login-sparkle:nth-child(8){--sparkle-x:61%;--sparkle-size:7px;--sparkle-time:8.4s;--sparkle-delay:-1s}.login-sparkle:nth-child(9){--sparkle-x:69%;--sparkle-size:4px;--sparkle-time:6.5s;--sparkle-delay:-5s}.login-sparkle:nth-child(10){--sparkle-x:77%;--sparkle-size:9px;--sparkle-time:9.2s;--sparkle-delay:-3s}.login-sparkle:nth-child(11){--sparkle-x:84%;--sparkle-size:6px;--sparkle-time:7.2s;--sparkle-delay:-6s}.login-sparkle:nth-child(12){--sparkle-x:91%;--sparkle-size:4px;--sparkle-time:8.8s;--sparkle-delay:-2s}.login-sparkle:nth-child(13){--sparkle-x:32%;--sparkle-size:4px;--sparkle-time:5.8s;--sparkle-delay:-4s}.login-sparkle:nth-child(14){--sparkle-x:72%;--sparkle-size:5px;--sparkle-time:6.7s;--sparkle-delay:-1s}
+.login-candy{position:absolute;left:var(--candy-x);top:var(--candy-y);font-size:var(--candy-size);filter:drop-shadow(0 4px 5px #8c174566) drop-shadow(0 0 12px #fff3);opacity:.78;animation:login-candy-float var(--candy-time) ease-in-out infinite;animation-delay:var(--candy-delay)}
+.login-candy:nth-of-type(1){--candy-x:7%;--candy-y:18%;--candy-size:24px;--candy-time:5.2s;--candy-delay:-1s}.login-candy:nth-of-type(2){--candy-x:24%;--candy-y:10%;--candy-size:19px;--candy-time:6.4s;--candy-delay:-3s}.login-candy:nth-of-type(3){--candy-x:46%;--candy-y:22%;--candy-size:27px;--candy-time:5.8s;--candy-delay:-2s}.login-candy:nth-of-type(4){--candy-x:67%;--candy-y:13%;--candy-size:20px;--candy-time:6.8s;--candy-delay:-5s}.login-candy:nth-of-type(5){--candy-x:82%;--candy-y:28%;--candy-size:25px;--candy-time:5.5s;--candy-delay:-4s}.login-candy:nth-of-type(6){--candy-x:92%;--candy-y:9%;--candy-size:18px;--candy-time:6.1s;--candy-delay:-2s}
+
+.login-button-wrap{
+  position:absolute;
+  z-index:2;
+  left:22.5%;
+  top:69%;
+  transform:translate(-50%,-50%);
+}
+
+.game-start-button{
+  position:relative;
+  min-width:205px;
+  padding:14px 53px 13px 64px;
+  border:3px solid #fff5ef;
+  border-radius:999px;
+  background:linear-gradient(180deg,#ff829b,#e94364 54%,#c72c52);
+  color:#fff;
+  cursor:pointer;
+  box-shadow:0 7px 0 #932443,0 13px 25px #5a153b55,inset 0 2px 0 #ffffff9c;
+  text-shadow:0 2px 2px #8f2143;
+  transition:transform .18s ease,filter .18s ease,box-shadow .18s ease;
+  animation:start-button-float 2.4s ease-in-out infinite;
+}
+
+.game-start-button:before,
+.game-start-button:after{
+  content:"♡";
+  position:absolute;
+  color:#fff4f7;
+  font-size:16px;
+  animation:start-heart 1.8s ease-in-out infinite;
+}
+.game-start-button:before{left:26px;top:-19px;transform:rotate(-14deg)}
+.game-start-button:after{right:22px;top:-14px;animation-delay:.5s;transform:rotate(13deg)}
+.game-start-button i{position:absolute;left:18px;top:50%;font-size:34px;font-style:normal;filter:drop-shadow(0 3px 2px #8a2346);transform:translateY(-50%) rotate(-8deg)}
+.game-start-button b,.game-start-button span{display:block}.game-start-button b{font-size:21px;letter-spacing:.14em;white-space:nowrap}.game-start-button span{margin-top:2px;font:700 8px/1 sans-serif;letter-spacing:.5em;opacity:.82}
+.game-start-button:hover{filter:brightness(1.08) saturate(1.08);transform:translateY(-3px) scale(1.04);box-shadow:0 9px 0 #932443,0 17px 30px #5a153b66,inset 0 2px 0 #fff}
+.game-start-button:active{transform:translateY(5px) scale(.99);box-shadow:0 2px 0 #932443,0 7px 15px #5a153b55,inset 0 2px 0 #ffffff9c}
+.game-start-button:focus-visible{outline:4px solid #fff;outline-offset:5px}
+
+@keyframes start-button-float{0%,100%{margin-top:0}50%{margin-top:-7px}}
+@keyframes start-heart{0%,100%{opacity:.45;translate:0 2px}50%{opacity:1;translate:0 -4px}}
+@keyframes login-sparkle-rise{0%{transform:translate3d(0,0,0) scale(.45);opacity:0}18%{opacity:.9}55%{transform:translate3d(18px,-52vh,0) scale(1);opacity:.75}100%{transform:translate3d(-12px,-108vh,0) scale(.3);opacity:0}}
+@keyframes login-candy-float{0%,100%{transform:translate3d(0,0,0) rotate(-9deg)}50%{transform:translate3d(10px,-17px,0) rotate(10deg)}}
+
+@media(max-width:700px),(orientation:portrait){
+  .login-screen{background-image:url("/ui/bg_login_mobile.png")}
+  .login-button-wrap{left:50%;top:auto;bottom:8%;transform:translateX(-50%)}
+  .game-start-button{min-width:190px;padding:13px 43px 12px 58px}
+  .game-start-button b{font-size:19px}
+  .game-start-button i{font-size:30px}
+}
+
+@media(prefers-reduced-motion:reduce){.game-start-button,.game-start-button:before,.game-start-button:after,.login-sparkle,.login-candy{animation:none}.login-sparkle{opacity:.38}}

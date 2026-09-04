@@ -1,0 +1,31 @@
+.desktop-files > button.folder > i {
+  position: relative;
+  width: 36px;
+  height: 27px;
+  margin: 8px auto 6px;
+  border-radius: 3px 4px 4px 4px;
+  background: linear-gradient(#ffd96b, #e9ad32);
+  color: transparent;
+  font-size: 0;
+  filter: drop-shadow(0 4px 5px #0007);
+}
+
+.desktop-files > button.folder > i::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: -6px;
+  width: 16px;
+  height: 8px;
+  border-radius: 3px 3px 0 0;
+  background: #f5c44b;
+}
+
+.desktop-files > button.folder.locked > i::after {
+  content: "🔒";
+  position: absolute;
+  right: -7px;
+  bottom: -7px;
+  color: initial;
+  font-size: 13px;
+}

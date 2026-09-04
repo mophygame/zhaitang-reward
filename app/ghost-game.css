@@ -1,0 +1,93 @@
+.haunted-room {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  background: #17211d url("/game/bg.png") center / cover no-repeat;
+  isolation: isolate;
+  touch-action: none;
+}
+
+.haunted-room::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(#07100b24, #07100b38);
+  pointer-events: none;
+}
+
+.haunted-room.is-playing { cursor: none; }
+.haunted-room.is-playing .target-ghost { cursor: none; }
+
+.target-ghost { z-index: 7; }
+
+.ghost-predator {
+  position: absolute;
+  z-index: 9;
+  width: 112px;
+  height: 88px;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+  filter: drop-shadow(0 7px 8px #0008);
+  pointer-events: none;
+  user-select: none;
+}
+
+.ghost-predator.attacking { animation: predator-bite .26s ease-out; }
+
+.strawberry-burst {
+  position: absolute;
+  z-index: 8;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+.strawberry-burst i {
+  --berry-x: 0px;
+  position: absolute;
+  font-style: normal;
+  font-size: 22px;
+  filter: drop-shadow(0 3px 3px #0006);
+  animation: strawberry-drop 1.05s cubic-bezier(.2,.7,.4,1) forwards;
+}
+
+.strawberry-burst i:nth-child(1) { --berry-x: -52px; }
+.strawberry-burst i:nth-child(2) { --berry-x: -25px; animation-delay: .04s; }
+.strawberry-burst i:nth-child(3) { --berry-x: 5px; animation-delay: .02s; }
+.strawberry-burst i:nth-child(4) { --berry-x: 34px; animation-delay: .07s; }
+.strawberry-burst i:nth-child(5) { --berry-x: 58px; animation-delay: .01s; }
+
+.strawberry-burst b {
+  position: absolute;
+  left: 0;
+  top: -35px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  color: #fff2a5;
+  font: bold 18px serif;
+  text-shadow: 0 2px 5px #741b19;
+  animation: ghost-vanish .55s ease-out forwards;
+}
+
+@keyframes predator-bite {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  45% { transform: translate(-50%, -50%) scale(1.32) rotate(-7deg); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes strawberry-drop {
+  0% { transform: translate(-50%, -50%) scale(.35); opacity: 0; }
+  18% { transform: translate(calc(-50% + var(--berry-x)), calc(-50% - 28px)) scale(1); opacity: 1; }
+  100% { transform: translate(calc(-50% + var(--berry-x)), 85px) rotate(240deg) scale(.8); opacity: 0; }
+}
+
+@keyframes ghost-vanish {
+  0% { opacity: 0; transform: translate(-50%, 8px) scale(.5); }
+  35% { opacity: 1; transform: translate(-50%, -10px) scale(1.15); }
+  100% { opacity: 0; transform: translate(-50%, -35px) scale(.8); }
+}
+
+@media (max-width: 700px) {
+  .ghost-predator { width: 86px; height: 68px; }
+  .strawberry-burst i { font-size: 18px; }
+}

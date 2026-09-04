@@ -1,0 +1,49 @@
+.contact-avatar,
+.call-avatar {
+  display: block;
+  width: 42px;
+  height: 42px;
+  border: 1px solid #d4d4d8;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 18%;
+  background: #eee;
+}
+
+.message-nav .contact-avatar.large {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;
+}
+
+.call-row {
+  grid-template-columns: 49px 1fr 56px;
+  gap: 7px;
+}
+
+.call-avatar-wrap {
+  position: relative;
+  width: 44px;
+  height: 44px;
+}
+
+.call-avatar-wrap i {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #629178;
+  color: #fff;
+  font: 700 8px/1 sans-serif;
+  font-style: normal;
+}
+
+.call-avatar-wrap i.missed {
+  background: #bd443a;
+  color: #fff;
+}

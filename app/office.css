@@ -1,0 +1,20 @@
+.office-scene{background:#090a09;display:grid;place-items:center;min-height:0}
+.office-scene:before{display:none}
+.office-stage{position:relative;width:min(100vw,calc((100vh - 68px)*1.7779));aspect-ratio:1672/941;max-height:100%;overflow:hidden;background:#090a09}
+.office-stage picture{display:contents}
+.office-base,.office-hover{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;display:block;user-select:none;-webkit-user-drag:none}
+.office-hover{opacity:0;transition:opacity 120ms ease;pointer-events:none}
+.office-hover.visible{opacity:1}
+.office-hotspot{position:absolute;z-index:4;border:0;background:transparent;cursor:pointer;border-radius:20px;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.office-hotspot:focus-visible{outline:3px solid #f5e792;outline-offset:3px}
+.phone-hotspot{left:23.5%;top:84.5%;width:11%;height:12.5%;transform:rotate(-7deg)}
+.light-hotspot{left:82.2%;top:31%;width:17.8%;height:60%}
+.screen-hotspot{left:1.2%;top:43%;width:28.5%;height:41%}
+.office-scene .mission{z-index:8}
+@media(max-width:700px),(hover:none) and (pointer:coarse){
+  .office-stage{width:min(100vw,calc((100vh - 68px)*.5622));aspect-ratio:940/1672}
+  .office-scene{align-content:center}
+  .phone-hotspot{left:21.5%;top:59.5%;width:16%;height:9%;min-width:46px;min-height:42px}
+  .light-hotspot{left:83%;top:40%;width:17%;height:25%;min-width:58px}
+  .screen-hotspot{left:0;top:43.5%;width:32.5%;height:18%;min-width:90px}
+}

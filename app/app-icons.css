@@ -1,0 +1,17 @@
+.apps i.custom {
+  overflow: hidden;
+}
+
+.apps i.custom img {
+  display: block;
+  width: 72%;
+  height: 72%;
+  object-fit: contain;
+}
+
+.apps i.map-icon {
+  background: linear-gradient(145deg, #78c99b, #3f9c75);
+  color: #fff;
+  font-size: 31px;
+  text-shadow: 0 2px 3px #276a4b;
+}
