@@ -10,12 +10,13 @@ import { PhoneHome } from "./PhoneHome";
 import { MessagesApp } from "./MessagesApp";
 import { MapApp } from "./MapApp";
 import { introBeats } from "../data/intro-script";
+import { GamePreloader } from "./GamePreloader";
 
 const apps=[["/ui/icon_clock.svg","時間","custom mint"],["/ui/icon_chat.svg","簡訊","custom yellow"],["/ui/icon_photo.svg","相簿","custom pink"],["☎","通話紀錄","blue"],["齋","齋堂官網","red"],["G","Google","white"],["⌖","地圖","map-icon"]];
 type PhoneView="home"|"clock"|"messages"|"calls"|"photos"|"website"|"google"|"map";
 type GalleryMode="all"|"year"|"month"|"day";
 
-export default function Home(){
+function Game(){
  const[started,setStarted]=useState(false),[intro,setIntro]=useState(true),[line,setLine]=useState(0),[phone,setPhone]=useState(false),[computer,setComputer]=useState(false),[unlocked,setUnlocked]=useState(false),[code,setCode]=useState(""),[error,setError]=useState(false),[sceneFocus,setSceneFocus]=useState<"phone"|"light"|"screen"|null>(null),[lightOn,setLightOn]=useState(false);
  const[view,setView]=useState<PhoneView>("home"),[callTab,setCallTab]=useState<"records"|"voicemail">("records"),[photo,setPhoto]=useState<number|null>(null),[galleryMode,setGalleryMode]=useState<GalleryMode>("all"),[browserPage,setBrowserPage]=useState<number|null>(null);
   const photoSwipeStart=useRef<number|null>(null);
@@ -74,3 +75,5 @@ export default function Home(){
  {view==="google"&&<div className="phone-app google-app">{browserPage===null?<><PhoneHeader title="Chrome"/><div className="google-logo"><i>G</i><span>oogle</span></div><a className="google-search" href="https://www.google.com/" target="_blank" rel="noreferrer">搜尋或輸入網址 <b>↗</b></a><div className="history-head"><b>瀏覽紀錄</b><span>午未的手機・10 筆</span></div><div className="browser-history">{browserHistory.map(h=><button key={h.id} onClick={()=>setBrowserPage(h.id)}><i>{h.category.slice(0,1)}</i><div><b>{h.title}</b><small>{h.site}・{h.time}</small><span>{h.query}</span></div><em>›</em></button>)}</div><nav className="browser-toolbar"><button>‹</button><button>›</button><button>＋</button><button>▢</button><button>•••</button></nav></>:<article className="fake-page"><div className="browser-address"><button onClick={()=>setBrowserPage(null)}>‹</button><span>🔒 {browserHistory[browserPage-1].site}.fake</span><button>⋮</button></div><div className="fake-site"><BrowserArticle record={browserHistory[browserPage-1]}/></div><nav className="browser-toolbar"><button onClick={()=>setBrowserPage(null)}>‹</button><button>›</button><button>＋</button><button>▢</button><button onClick={()=>setBrowserPage(null)}>⌂</button></nav></article>}</div>}
  <div className="homebar"/></div>}</div></div>}</main>
 }
+
+export default function Home(){return <GamePreloader><Game/></GamePreloader>}

@@ -31,6 +31,7 @@ import "./petitions.css";
 import "./desktop-drag.css";
 import "./desktop-windows.css";
 import "./login.css";
+import "./loading-screen.css";
 import "./pdf-viewer.css";
 import "./xlsx-viewer.css";
 import "./docx-viewer.css";
@@ -57,6 +58,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-Hant">
+      <head>
+        <link rel="preload" href="/ui/bg_login_desktop.png" as="image" media="(min-width: 701px)"/>
+        <link rel="preload" href="/ui/bg_login_mobile.png" as="image" media="(max-width: 700px)"/>
+        <link rel="preload" href="/ui/bg_office.webp" as="image" media="(min-width: 701px)"/>
+        <link rel="preload" href="/ui/bg_office_mobile.png" as="image" media="(max-width: 700px)"/>
+      </head>
       <body>{children}</body>
     </html>
   );
