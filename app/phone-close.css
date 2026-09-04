@@ -23,12 +23,13 @@
     backdrop-filter:blur(8px);
   }
   .device .phone-close-inside:active{transform:scale(.92);background:#a53b32}
-  .computer-close-outside{display:none}
-  .monitor-frame .computer-close-inside{
+  .computer-overlay>.computer-close-outside{
     position:absolute;
     z-index:220;
-    top:12px;
-    right:12px;
+    top:calc(50% + min(310px,41vh) + 14px);
+    right:auto;
+    bottom:auto;
+    left:50%;
     display:grid;
     place-items:center;
     width:36px;
@@ -43,6 +44,8 @@
     line-height:1;
     cursor:pointer;
     backdrop-filter:blur(8px);
+    transform:translateX(-50%);
   }
-  .monitor-frame .computer-close-inside:active{transform:scale(.92);background:#a53b32}
+  .computer-overlay>.computer-close-outside:active{transform:translateX(-50%) scale(.92);background:#a53b32}
+  .monitor-frame .computer-close-inside{display:none}
 }
