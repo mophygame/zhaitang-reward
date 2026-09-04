@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./phone.css";
+import "./phone-close.css";
 import "./gallery.css";
 import "./browser.css";
 import "./article.css";

@@ -1,0 +1,48 @@
+.phone-close-inside,.computer-close-inside{display:none}
+
+@media(max-width:700px), (hover:none) and (pointer:coarse){
+  .phone-close-outside{display:none}
+  .device .phone-close-inside{
+    position:absolute;
+    z-index:200;
+    top:27px;
+    right:11px;
+    display:grid;
+    place-items:center;
+    width:34px;
+    height:34px;
+    padding:0;
+    border:1px solid #ffffffaa;
+    border-radius:50%;
+    background:#171717c7;
+    color:#fff;
+    box-shadow:0 3px 12px #0006;
+    font-size:24px;
+    line-height:1;
+    cursor:pointer;
+    backdrop-filter:blur(8px);
+  }
+  .device .phone-close-inside:active{transform:scale(.92);background:#a53b32}
+  .computer-close-outside{display:none}
+  .monitor-frame .computer-close-inside{
+    position:absolute;
+    z-index:220;
+    top:12px;
+    right:12px;
+    display:grid;
+    place-items:center;
+    width:36px;
+    height:36px;
+    padding:0;
+    border:1px solid #ffffffaa;
+    border-radius:50%;
+    background:#171717d4;
+    color:#fff;
+    box-shadow:0 3px 12px #0008;
+    font-size:25px;
+    line-height:1;
+    cursor:pointer;
+    backdrop-filter:blur(8px);
+  }
+  .monitor-frame .computer-close-inside:active{transform:scale(.92);background:#a53b32}
+}

@@ -90,9 +90,10 @@ export function ComputerTerminal({onClose}:{onClose:()=>void}){
   const renderFilePreview=(item:DesktopItem)=>item.type==="PDF 文件"&&item.src?<div className="pdf-file-content"><div className="pdf-toolbar"><span>PDF 閱讀器</span><b>{item.name}</b><em>安全視窗模式</em></div><iframe className="pdf-viewer" title={item.name} src={`${item.src}#toolbar=0&navpanes=0&scrollbar=1&view=FitH`}/></div>:item.type==="Excel 試算表"&&item.src?<XlsxViewer name={item.name} src={item.src}/>:item.type==="Word 文件"&&item.src?<DocxViewer name={item.name} src={item.src}/>:item.type==="圖片"&&item.src?<ImageViewer name={item.name} src={item.src}/>:item.type==="文字文件"&&item.src?<TextViewer name={item.name} src={item.src}/>:item.type==="影片"&&item.src?<VideoViewer name={item.name} src={item.src}/>:item.type==="瀏覽器捷徑"&&item.src?<WebShortcutViewer name={item.name} src={item.src}/>:<div className="file-content"><i>{item.icon}</i><small>{item.type}</small><h2>{item.name}</h2><p>{item.content}</p></div>;
 
   return <div className="computer-overlay" role="dialog" aria-modal="true" aria-label="辦公室電腦">
-    <button className="computer-close" onClick={onClose} aria-label="關閉電腦">×</button>
+    <button className="computer-close computer-close-outside" onClick={onClose} aria-label="關閉電腦">×</button>
     <div className="monitor-frame">
       <div className="monitor-camera"/>
+      <button className="computer-close-inside" onClick={onClose} aria-label="關閉電腦">×</button>
       {!unlocked?<div className="computer-login">
         <div className="login-avatar">午</div>
         <h2>午未</h2>
