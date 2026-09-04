@@ -233,6 +233,13 @@ export const photos = [
   },
   {
     "id": 34,
+    "title": "34",
+    "date": "9月5日 00:55",
+    "modifiedAt": "2026-09-04T16:55:01.663Z",
+    "src": "/picture/34.webp"
+  },
+  {
+    "id": 35,
     "title": "wuwei-week",
     "date": "9月1日 11:45",
     "modifiedAt": "2026-09-01T03:45:46.750Z",
