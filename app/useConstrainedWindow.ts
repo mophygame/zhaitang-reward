@@ -10,6 +10,8 @@ export function useConstrainedWindow(){
   const gesture=useRef<Gesture|null>(null);
   const[rect,setRect]=useState<WindowRect|null>(null);
   const[active,setActive]=useState(false);
+  const[maximized,setMaximized]=useState(false);
+  const restoreRect=useRef<WindowRect|null>(null);
 
   useEffect(()=>{
     const keepInsideScreen=()=>setRect(current=>{
@@ -34,6 +36,7 @@ export function useConstrainedWindow(){
   };
   const start=(mode:Gesture["mode"],event:ReactPointerEvent<HTMLElement>)=>{
     if(mode==="move"&&(event.target as HTMLElement).closest("button"))return;
+    if(maximized)return;
     const current=rect??measure();
     if(!current)return;
     event.preventDefault();
@@ -63,10 +66,21 @@ export function useConstrainedWindow(){
     gesture.current=null;setActive(false);
   };
   const style:CSSProperties|undefined=rect?{left:rect.x,top:rect.y,width:rect.width,height:rect.height,right:"auto",bottom:"auto"}:undefined;
+  const toggleMaximize=()=>{
+    const parent=windowRef.current?.parentElement;
+    if(!parent)return;
+    if(maximized){setRect(restoreRect.current??null);setMaximized(false);return}
+    restoreRect.current=rect??measure();
+    const bounds=parent.getBoundingClientRect();
+    setRect({x:0,y:34,width:bounds.width,height:Math.max(180,bounds.height-76)});
+    setMaximized(true);
+  };
 
   return{
-    windowProps:{ref:windowRef,style,className:active?"window-transforming":""},
-    moveProps:{onPointerDown:(event:ReactPointerEvent<HTMLElement>)=>start("move",event),onPointerMove:move,onPointerUp:end,onPointerCancel:end},
+    windowProps:{ref:windowRef,style,className:`${active?"window-transforming ":""}${maximized?"window-maximized":""}`},
+    moveProps:{onPointerDown:(event:ReactPointerEvent<HTMLElement>)=>start("move",event),onPointerMove:move,onPointerUp:end,onPointerCancel:end,onDoubleClick:toggleMaximize},
     resizeProps:{onPointerDown:(event:ReactPointerEvent<HTMLElement>)=>start("resize",event),onPointerMove:move,onPointerUp:end,onPointerCancel:end},
+    toggleMaximize,
+    maximized,
   };
 }

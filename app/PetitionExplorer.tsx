@@ -35,11 +35,11 @@ function separateImperialNotes(body:string){
   return {official:official.join("\n\n"),notes};
 }
 
-function DocumentPaper({document,onBack}:{document:PetitionDocument;onBack:()=>void}){
+export function DocumentPaper({document,onBack}:{document:PetitionDocument;onBack?:()=>void}){
   const review=separateImperialNotes(document.body);
   return <div className="petition-reader">
     <div className="reader-commandbar">
-      <button onClick={onBack}>‹ 返回資料夾</button>
+      {onBack?<button onClick={onBack}>‹ 返回資料夾</button>:<span>天界公文</span>}
       <span>唯讀模式</span>
       <button onClick={()=>window.print()} aria-label="列印公文">列印</button>
     </div>
@@ -65,7 +65,7 @@ function DocumentPaper({document,onBack}:{document:PetitionDocument;onBack:()=>v
   </div>;
 }
 
-export function PetitionExplorer({folder,items=[],placements={},onPlace,onOpen}:{folder:PetitionFolder;items?:DesktopItem[];placements?:PlacementMap;onPlace?:(name:string,next:ItemPlacement)=>void;onOpen?:(item:DesktopItem)=>void}){
+export function PetitionExplorer({folder,items=[],placements={},onPlace,onOpen,onOpenDocument}:{folder:PetitionFolder;items?:DesktopItem[];placements?:PlacementMap;onPlace?:(name:string,next:ItemPlacement)=>void;onOpen?:(item:DesktopItem)=>void;onOpenDocument?:(document:PetitionDocument)=>void}){
   const[active,setActive]=useState<PetitionDocument|null>(null);
   const managedItems=items.filter(item=>placements[item.name]?.parent===folder.name);
   const move=(name:string,parent:string|null)=>{const current=placements[name]??{parent:null,x:20,y:20};onPlace?.(name,{...current,parent})};
@@ -87,7 +87,7 @@ export function PetitionExplorer({folder,items=[],placements={},onPlace,onOpen}:
           {managedItems.map(item=><button role="row" draggable key={`managed-${item.name}`} onDragStart={event=>startDrag(event,item.name)} onDragOver={event=>{if(item.type.includes("資料夾"))event.preventDefault()}} onDrop={event=>{if(item.type.includes("資料夾")){event.stopPropagation();receive(event,item.name)}}} onDoubleClick={()=>onOpen?.(item)}>
             <span className="petition-file-name"><i>{item.icon}</i><b>{item.name}</b></span><span>桌面項目</span><span>{item.type.includes("資料夾")?"可放入":"已移入"}</span><span>{item.type}</span>
           </button>)}
-          {folder.documents.map(document=><button role="row" key={document.id} onClick={()=>setActive(document)}>
+          {folder.documents.map(document=><button role="row" key={document.id} onClick={()=>onOpenDocument?onOpenDocument(document):setActive(document)}>
             <span className="petition-file-name"><i>{folder.urgent?"🔴":"📄"}</i><b>{document.id}｜《{document.title}》</b></span>
             <span>{document.department}</span><span className={document.status.includes("未讀")?"unread":""}>{document.status}</span><span>天界公文</span>
           </button>)}

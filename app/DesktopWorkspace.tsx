@@ -20,6 +20,8 @@ export function DesktopWorkspace({items,placements,onPlace,onOpen}:{items:Deskto
     for(const element of document.elementsFromPoint(clientX,clientY)){
       const folder=(element as HTMLElement).closest<HTMLElement>("[data-desktop-folder]");
       if(folder?.dataset.desktopFolder&&folder.dataset.desktopFolder!==current)return folder.dataset.desktopFolder;
+      const openFolder=(element as HTMLElement).closest<HTMLElement>("[data-current-folder]");
+      if(openFolder?.dataset.currentFolder&&openFolder.dataset.currentFolder!==current)return openFolder.dataset.currentFolder;
     }
     return null;
   };
@@ -47,8 +49,15 @@ export function DesktopWorkspace({items,placements,onPlace,onOpen}:{items:Deskto
     if(!drag.moved)onOpen(item);
     dragRef.current=null;setDragging(null);setDropTarget(null);
   };
+  const receiveFromWindow=(event:React.DragEvent<HTMLDivElement>)=>{
+    event.preventDefault();
+    const name=event.dataTransfer.getData("application/x-zhaitang-file"),area=areaRef.current;
+    if(!name||!area)return;
+    const rect=area.getBoundingClientRect();
+    onPlace(name,{parent:null,x:Math.max(0,Math.min(rect.width-74,event.clientX-rect.left-37)),y:Math.max(0,Math.min(rect.height-70,event.clientY-rect.top-35))});
+  };
 
-  return <div className="desktop-files interactive-desktop-files" ref={areaRef} aria-label="可整理的電腦桌面">
+  return <div className="desktop-files interactive-desktop-files" ref={areaRef} aria-label="可整理的電腦桌面" onDragOver={event=>{event.preventDefault();event.dataTransfer.dropEffect="move"}} onDrop={receiveFromWindow}>
     {items.map((item,index)=>{
       const position=positionOf(item,index);
       if(position.parent!==null)return null;
@@ -76,7 +85,7 @@ export function FolderContents({folder,items,placements,onPlace,onOpen}:{folder:
   const startDrag=(event:React.DragEvent,name:string)=>{event.dataTransfer.setData("application/x-zhaitang-file",name);event.dataTransfer.effectAllowed="move"};
   const receive=(event:React.DragEvent,parent:string|null)=>{event.preventDefault();const name=event.dataTransfer.getData("application/x-zhaitang-file");if(name&&name!==parent)move(name,parent)};
 
-  return <div className="folder-contents">
+  return <div className="folder-contents" data-current-folder={folder.name} onDragOver={event=>event.preventDefault()} onDrop={event=>{if(event.target===event.currentTarget)receive(event,folder.name)}}>
     <div className="folder-path-drop" onDragOver={event=>event.preventDefault()} onDrop={event=>receive(event,null)} title="將項目拖到這裡可移回桌面">
       <b>🖥 桌面</b><span>›</span><strong>{folder.name}</strong><em>拖到「桌面」可移出資料夾</em>
     </div>
@@ -85,6 +94,7 @@ export function FolderContents({folder,items,placements,onPlace,onOpen}:{folder:
       key={item.name}
       draggable
       data-folder-row={isFolder(item)?item.name:undefined}
+      data-desktop-folder={isFolder(item)?item.name:undefined}
       onDragStart={event=>startDrag(event,item.name)}
       onDragOver={event=>{if(isFolder(item))event.preventDefault()}}
       onDrop={event=>{if(isFolder(item)){event.stopPropagation();receive(event,item.name)}}}

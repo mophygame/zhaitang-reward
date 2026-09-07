@@ -42,6 +42,7 @@ import "./video-viewer.css";
 import "./folder-password.css";
 import "./music.css";
 import "./desktop-browser.css";
+import "./window-management.css";
 
 export const metadata: Metadata = {
   title: "齋堂全通關｜消失的老闆",

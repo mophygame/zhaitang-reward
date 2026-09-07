@@ -233,6 +233,48 @@ export const photos = [
   },
   {
     "id": 34,
+    "title": "35",
+    "date": "9月5日 19:38",
+    "modifiedAt": "2026-09-05T11:38:51.423Z",
+    "src": "/picture/35.webp"
+  },
+  {
+    "id": 35,
+    "title": "36",
+    "date": "9月5日 19:38",
+    "modifiedAt": "2026-09-05T11:38:59.951Z",
+    "src": "/picture/36.webp"
+  },
+  {
+    "id": 36,
+    "title": "37",
+    "date": "9月5日 19:39",
+    "modifiedAt": "2026-09-05T11:39:04.243Z",
+    "src": "/picture/37.webp"
+  },
+  {
+    "id": 37,
+    "title": "38",
+    "date": "9月5日 19:39",
+    "modifiedAt": "2026-09-05T11:39:08.826Z",
+    "src": "/picture/38.webp"
+  },
+  {
+    "id": 38,
+    "title": "39",
+    "date": "9月5日 19:39",
+    "modifiedAt": "2026-09-05T11:39:13.387Z",
+    "src": "/picture/39.webp"
+  },
+  {
+    "id": 39,
+    "title": "40",
+    "date": "9月5日 19:39",
+    "modifiedAt": "2026-09-05T11:39:25.220Z",
+    "src": "/picture/40.webp"
+  },
+  {
+    "id": 40,
     "title": "wuwei-week",
     "date": "9月1日 11:45",
     "modifiedAt": "2026-09-01T03:45:46.750Z",
