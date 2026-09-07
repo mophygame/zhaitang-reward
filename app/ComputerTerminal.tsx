@@ -83,19 +83,22 @@ export function ComputerTerminal({onClose}:{onClose:()=>void}){
     setGhost(value=>(value+3)%ghosts.length);
   };
   const placeItem=(name:string,next:ItemPlacement)=>setPlacements(current=>({...current,[name]:next}));
+  const centerOnMobile=(center:()=>void)=>{if(!window.matchMedia("(max-width: 900px), (hover: none) and (pointer: coarse)").matches)return;window.requestAnimationFrame(()=>window.requestAnimationFrame(center))};
   const openDesktopItem=(item:DesktopItem)=>{
-    if(item.name===ghostAppItem.name){setAppOpen(true);restoreWindow("game");return}
+    if(item.name===ghostAppItem.name){setAppOpen(true);restoreWindow("game");centerOnMobile(gameWindow.center);return}
     if(item.name==="小甜糕不要看"&&!privateFolderUnlocked){setLockedFolder(item);setFolderPassword("");setFolderPasswordError(false);return}
     if(selected?.type.includes("資料夾")&&!item.type.includes("資料夾")){
       setPreviewPetition(null);
       setPreviewFile(item);
       restoreWindow("preview");
+      centerOnMobile(previewWindow.center);
       return;
     }
     setSelected(item);
     restoreWindow("file");
+    centerOnMobile(fileWindow.center);
   };
-  const unlockPrivateFolder=()=>{if(folderPassword==="0828"){setPrivateFolderUnlocked(true);setSelected(lockedFolder);setLockedFolder(null);setFolderPassword("");setFolderPasswordError(false)}else{setFolderPassword("");setFolderPasswordError(true)}};
+  const unlockPrivateFolder=()=>{if(folderPassword==="0828"){setPrivateFolderUnlocked(true);setSelected(lockedFolder);setLockedFolder(null);setFolderPassword("");setFolderPasswordError(false);centerOnMobile(fileWindow.center)}else{setFolderPassword("");setFolderPasswordError(true)}};
   const minimizeWindow=(key:string)=>setMinimized(current=>({...current,[key]:true}));
   const restoreWindow=(key:string)=>setMinimized(current=>({...current,[key]:false}));
   const toggleTaskWindow=(key:string)=>setMinimized(current=>({...current,[key]:!current[key]}));
@@ -148,7 +151,7 @@ export function ComputerTerminal({onClose}:{onClose:()=>void}){
           <WindowButtons windowKey="file" onClose={()=>{setSelected(null);setPreviewFile(null);setPreviewPetition(null)}} onMaximize={fileWindow.toggleMaximize}/>
           <header {...fileWindow.moveProps}><div className="window-title"><i>{selected.icon}</i><b>{selected.name}</b></div><small className="window-drag-label">拖曳移動</small></header>
           <div className="file-toolbar"><span>檔案</span><span>常用</span><span>檢視</span></div>
-          {petitionFolders[selected.name]?<PetitionExplorer folder={petitionFolders[selected.name]} items={computerItems} placements={placements} onPlace={placeItem} onOpen={openDesktopItem} onOpenDocument={document=>{setPreviewFile(null);setPreviewPetition(document);restoreWindow("preview")}}/>:selected.type.includes("資料夾")?<FolderContents folder={selected} items={computerItems} placements={placements} onPlace={placeItem} onOpen={openDesktopItem}/>:renderFilePreview(selected)}
+          {petitionFolders[selected.name]?<PetitionExplorer folder={petitionFolders[selected.name]} items={computerItems} placements={placements} onPlace={placeItem} onOpen={openDesktopItem} onOpenDocument={document=>{setPreviewFile(null);setPreviewPetition(document);restoreWindow("preview");centerOnMobile(previewWindow.center)}}/>:selected.type.includes("資料夾")?<FolderContents folder={selected} items={computerItems} placements={placements} onPlace={placeItem} onOpen={openDesktopItem}/>:renderFilePreview(selected)}
           <i className="window-resize-handle" {...fileWindow.resizeProps} aria-label="調整視窗大小"/>
         </section>}
         {(previewFile||previewPetition)&&<section ref={previewWindow.windowProps.ref} style={{...previewWindow.windowProps.style,display:minimized.preview?"none":undefined}} className={`file-window child-file-window ${previewWindow.windowProps.className}`}>

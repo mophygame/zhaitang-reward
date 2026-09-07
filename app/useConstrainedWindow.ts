@@ -75,6 +75,14 @@ export function useConstrainedWindow(){
     setRect({x:0,y:34,width:bounds.width,height:Math.max(180,bounds.height-76)});
     setMaximized(true);
   };
+  const center=()=>{
+    const element=windowRef.current,parent=element?.parentElement;
+    if(!element||!parent)return;
+    const bounds=parent.getBoundingClientRect(),box=element.getBoundingClientRect();
+    const width=Math.min(box.width,bounds.width),height=Math.min(box.height,Math.max(120,bounds.height-76));
+    setRect({x:Math.max(0,(bounds.width-width)/2),y:Math.max(34,34+(bounds.height-76-height)/2),width,height});
+    setMaximized(false);
+  };
 
   return{
     windowProps:{ref:windowRef,style,className:`${active?"window-transforming ":""}${maximized?"window-maximized":""}`},
@@ -82,5 +90,6 @@ export function useConstrainedWindow(){
     resizeProps:{onPointerDown:(event:ReactPointerEvent<HTMLElement>)=>start("resize",event),onPointerMove:move,onPointerUp:end,onPointerCancel:end},
     toggleMaximize,
     maximized,
+    center,
   };
 }
