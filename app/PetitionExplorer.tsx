@@ -87,7 +87,7 @@ export function PetitionExplorer({folder,items=[],placements={},onPlace,onOpen,o
           {managedItems.map(item=><button role="row" draggable key={`managed-${item.name}`} onDragStart={event=>startDrag(event,item.name)} onDragOver={event=>{if(item.type.includes("資料夾"))event.preventDefault()}} onDrop={event=>{if(item.type.includes("資料夾")){event.stopPropagation();receive(event,item.name)}}} onDoubleClick={()=>onOpen?.(item)}>
             <span className="petition-file-name"><i>{item.icon}</i><b>{item.name}</b></span><span>桌面項目</span><span>{item.type.includes("資料夾")?"可放入":"已移入"}</span><span>{item.type}</span>
           </button>)}
-          {folder.documents.map(document=><button role="row" key={document.id} onClick={()=>onOpenDocument?onOpenDocument(document):setActive(document)}>
+          {folder.documents.map(document=><button role="row" key={document.id} onDoubleClick={()=>onOpenDocument?onOpenDocument(document):setActive(document)}>
             <span className="petition-file-name"><i>{folder.urgent?"🔴":"📄"}</i><b>{document.id}｜《{document.title}》</b></span>
             <span>{document.department}</span><span className={document.status.includes("未讀")?"unread":""}>{document.status}</span><span>天界公文</span>
           </button>)}

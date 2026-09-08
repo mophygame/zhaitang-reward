@@ -50,6 +50,8 @@ export function ComputerTerminal({onClose}:{onClose:()=>void}){
   const[placements,setPlacements]=useState<PlacementMap>({});
   const[layoutLoaded,setLayoutLoaded]=useState(false);
   const[minimized,setMinimized]=useState<Record<string,boolean>>({});
+  const[windowHistory,setWindowHistory]=useState<DesktopItem[]>([]);
+  const[historyIndex,setHistoryIndex]=useState(-1);
 
   useEffect(()=>{
     try{const saved=window.localStorage.getItem(DESKTOP_LAYOUT_KEY);if(saved)setPlacements(JSON.parse(saved))}catch{}
@@ -84,7 +86,14 @@ export function ComputerTerminal({onClose}:{onClose:()=>void}){
   };
   const placeItem=(name:string,next:ItemPlacement)=>setPlacements(current=>({...current,[name]:next}));
   const centerOnMobile=(center:()=>void)=>{if(!window.matchMedia("(max-width: 900px), (hover: none) and (pointer: coarse)").matches)return;window.requestAnimationFrame(()=>window.requestAnimationFrame(center))};
-  const openDesktopItem=(item:DesktopItem)=>{
+  const setHistoryItem=(item:DesktopItem,root=false)=>{
+    if(root){setWindowHistory([item]);setHistoryIndex(0);return}
+    setWindowHistory(current=>{
+      const next=current.slice(0,historyIndex+1);
+      next.push(item);setHistoryIndex(next.length-1);return next;
+    });
+  };
+  const openDesktopItem=(item:DesktopItem,root=false)=>{
     if(item.name===ghostAppItem.name){setAppOpen(true);restoreWindow("game");centerOnMobile(gameWindow.center);return}
     if(item.name==="小甜糕不要看"&&!privateFolderUnlocked){setLockedFolder(item);setFolderPassword("");setFolderPasswordError(false);return}
     if(selected?.type.includes("資料夾")&&!item.type.includes("資料夾")){
@@ -95,17 +104,20 @@ export function ComputerTerminal({onClose}:{onClose:()=>void}){
       return;
     }
     setSelected(item);
+    setHistoryItem(item,root||!selected);
     restoreWindow("file");
     centerOnMobile(fileWindow.center);
   };
-  const unlockPrivateFolder=()=>{if(folderPassword==="0828"){setPrivateFolderUnlocked(true);setSelected(lockedFolder);setLockedFolder(null);setFolderPassword("");setFolderPasswordError(false);centerOnMobile(fileWindow.center)}else{setFolderPassword("");setFolderPasswordError(true)}};
+  const openRootItem=(item:DesktopItem)=>openDesktopItem(item,true);
+  const moveHistory=(step:number)=>{const next=historyIndex+step;if(next<0||next>=windowHistory.length)return;setHistoryIndex(next);setSelected(windowHistory[next]);restoreWindow("file")};
+  const unlockPrivateFolder=()=>{if(folderPassword==="0828"){setPrivateFolderUnlocked(true);setSelected(lockedFolder);if(lockedFolder)setHistoryItem(lockedFolder,true);setLockedFolder(null);setFolderPassword("");setFolderPasswordError(false);centerOnMobile(fileWindow.center)}else{setFolderPassword("");setFolderPasswordError(true)}};
   const minimizeWindow=(key:string)=>setMinimized(current=>({...current,[key]:true}));
   const restoreWindow=(key:string)=>setMinimized(current=>({...current,[key]:false}));
   const toggleTaskWindow=(key:string)=>setMinimized(current=>({...current,[key]:!current[key]}));
-  const WindowButtons=({windowKey,onClose,onMaximize}:{windowKey:string;onClose:()=>void;onMaximize:()=>void})=><div className="mac-window-controls" aria-label="視窗控制">
-    <button className="mac-close" onClick={onClose} aria-label="關閉視窗" title="關閉"/>
-    <button className="mac-minimize" onClick={()=>minimizeWindow(windowKey)} aria-label="縮小視窗" title="縮到功能列"/>
-    <button className="mac-maximize" onClick={onMaximize} aria-label="最大化視窗" title="最大化／還原"/>
+  const WindowButtons=({windowKey,onClose,onMaximize,maximized}:{windowKey:string;onClose:()=>void;onMaximize:()=>void;maximized:boolean})=><div className="mac-window-controls" aria-label="視窗控制">
+    <button className="mac-close" onClick={onClose} aria-label="關閉視窗" title="關閉"><img src="/icon/close.svg" alt=""/></button>
+    <button className="mac-minimize" onClick={()=>minimizeWindow(windowKey)} aria-label="縮小視窗" title="縮到功能列"><img src="/icon/maximize.svg" alt=""/></button>
+    <button className="mac-maximize" onClick={onMaximize} aria-label={maximized?"恢復正常視窗大小":"進入全螢幕視窗"} title={maximized?"恢復正常大小":"全螢幕"}><img src={maximized?"/icon/zoom_in.svg":"/icon/zoom_out.svg"} alt=""/></button>
   </div>;
   const renderFilePreview=(item:DesktopItem)=>{
     const extension=item.name.split(".").pop()?.toLowerCase();
@@ -136,7 +148,7 @@ export function ComputerTerminal({onClose}:{onClose:()=>void}){
         <small className={error?"login-error":""}>{error?"密碼不正確":"密碼提示：齋堂電話"}</small>
       </div>:<div className="computer-desktop">
         <div className="desktop-topbar"><b>齋堂 OS</b><span className="connection-status">辦公室電腦　<i/><strong>已連線</strong></span></div>
-        <DesktopWorkspace items={computerItems} placements={placements} onPlace={placeItem} onOpen={openDesktopItem}/>
+        <DesktopWorkspace items={computerItems} placements={placements} onPlace={placeItem} onOpen={openRootItem}/>
         {notificationsOpen&&<div className="desktop-notifications">
           <div className="desktop-alert urgent"><b>會自己賺錢的金蟾（裘芨）</b><p>老闆，簽核。<br/>老闆？？<br/>我看到你在線上。<br/><strong>你他媽剛剛還按讚甜點店貼文。</strong></p></div>
           <div className="desktop-alert"><b>狗腿燈想升天（賀止損）</b><p>您的報帳再次退件。<br/><strong>退件原因：</strong>草莓大福不是驅魔耗材。</p></div>
@@ -148,22 +160,22 @@ export function ComputerTerminal({onClose}:{onClose:()=>void}){
           {appOpen&&<button className={!minimized.game?"active":"minimized"} onClick={()=>toggleTaskWindow("game")} title={minimized.game?"顯示視窗":"縮小視窗"}><i>鬼</i><span>齋堂抓鬼魂</span><em/></button>}
         </div><div className="task-spacer"/><span className="task-clock">13:02<br/>2026/09/04</span><button className={`task-notification ${notificationsOpen?"active":""}`} onClick={()=>setNotificationsOpen(value=>!value)} aria-expanded={notificationsOpen} aria-label="通知"><i>♧</i><b>3</b></button></div>
         {selected&&<section ref={fileWindow.windowProps.ref} style={{...fileWindow.windowProps.style,display:minimized.file?"none":undefined}} className={`file-window ${fileWindow.windowProps.className}`}>
-          <WindowButtons windowKey="file" onClose={()=>{setSelected(null);setPreviewFile(null);setPreviewPetition(null)}} onMaximize={fileWindow.toggleMaximize}/>
-          <header {...fileWindow.moveProps}><div className="window-title"><i>{selected.icon}</i><b>{selected.name}</b></div><small className="window-drag-label">拖曳移動</small></header>
+          <WindowButtons windowKey="file" onClose={()=>{setSelected(null);setPreviewFile(null);setPreviewPetition(null)}} onMaximize={fileWindow.toggleMaximize} maximized={fileWindow.maximized}/>
+          <header {...fileWindow.moveProps}><nav className="window-history"><button disabled={historyIndex<=0} onClick={()=>moveHistory(-1)} aria-label="返回上一步">‹</button><button disabled={historyIndex<0||historyIndex>=windowHistory.length-1} onClick={()=>moveHistory(1)} aria-label="前往下一步">›</button></nav><div className="window-title"><i>{selected.icon}</i><b>{selected.name}</b></div><small className="window-drag-label">拖曳移動</small></header>
           <div className="file-toolbar"><span>檔案</span><span>常用</span><span>檢視</span></div>
           {petitionFolders[selected.name]?<PetitionExplorer folder={petitionFolders[selected.name]} items={computerItems} placements={placements} onPlace={placeItem} onOpen={openDesktopItem} onOpenDocument={document=>{setPreviewFile(null);setPreviewPetition(document);restoreWindow("preview");centerOnMobile(previewWindow.center)}}/>:selected.type.includes("資料夾")?<FolderContents folder={selected} items={computerItems} placements={placements} onPlace={placeItem} onOpen={openDesktopItem}/>:renderFilePreview(selected)}
           <i className="window-resize-handle" {...fileWindow.resizeProps} aria-label="調整視窗大小"/>
         </section>}
         {(previewFile||previewPetition)&&<section ref={previewWindow.windowProps.ref} style={{...previewWindow.windowProps.style,display:minimized.preview?"none":undefined}} className={`file-window child-file-window ${previewWindow.windowProps.className}`}>
-          <WindowButtons windowKey="preview" onClose={()=>{setPreviewFile(null);setPreviewPetition(null)}} onMaximize={previewWindow.toggleMaximize}/>
-          <header {...previewWindow.moveProps}><div className="window-title"><i>{previewFile?.icon??"📄"}</i><b>{previewFile?.name??previewPetition?.title}</b></div><small className="window-drag-label">拖曳移動</small></header>
+          <WindowButtons windowKey="preview" onClose={()=>{setPreviewFile(null);setPreviewPetition(null)}} onMaximize={previewWindow.toggleMaximize} maximized={previewWindow.maximized}/>
+          <header {...previewWindow.moveProps}><nav className="window-history"><button disabled aria-label="返回上一步">‹</button><button disabled aria-label="前往下一步">›</button></nav><div className="window-title"><i>{previewFile?.icon??"📄"}</i><b>{previewFile?.name??previewPetition?.title}</b></div><small className="window-drag-label">拖曳移動</small></header>
           <div className="file-toolbar"><span>檔案</span><span>檢視</span><strong>假電腦視窗</strong></div>
           {previewFile?renderFilePreview(previewFile):previewPetition?<DocumentPaper document={previewPetition}/>:null}
           <i className="window-resize-handle" {...previewWindow.resizeProps} aria-label="調整視窗大小"/>
         </section>}
         {appOpen&&<section ref={gameWindow.windowProps.ref} style={{...gameWindow.windowProps.style,display:minimized.game?"none":undefined}} className={`ghost-game-window ${gameWindow.windowProps.className}`}>
-          <WindowButtons windowKey="game" onClose={()=>{setAppOpen(false);setPlaying(false)}} onMaximize={gameWindow.toggleMaximize}/>
-          <header {...gameWindow.moveProps}><b className="window-title">齋堂抓鬼魂</b><small className="window-drag-label">拖曳移動</small></header>
+          <WindowButtons windowKey="game" onClose={()=>{setAppOpen(false);setPlaying(false)}} onMaximize={gameWindow.toggleMaximize} maximized={gameWindow.maximized}/>
+          <header {...gameWindow.moveProps}><nav className="window-history"><button disabled aria-label="返回上一步">‹</button><button disabled aria-label="前往下一步">›</button></nav><b className="window-title">齋堂抓鬼魂</b><small className="window-drag-label">拖曳移動</small></header>
           <div className="game-stats"><span>得分 <b>{score}</b></span><span>剩餘 <b>{seconds}s</b></span></div>
           <div className={`haunted-room ${playing?"is-playing":""}`} onPointerDown={movePredator} onPointerMove={movePredator} onTouchStart={movePredatorByTouch} onTouchMove={movePredatorByTouch}>
             {!playing&&<div className="game-start"><b>{seconds===0?`時間到！抓到 ${score} 隻鬼魂` : "天庭的囚犯鬼逃脫了"}</b><p>在鬼魂逃走前點擊牠，20 秒內抓得越多越好。</p><button onClick={start}>{seconds===0?"再玩一次":"開始抓鬼"}</button></div>}

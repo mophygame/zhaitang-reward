@@ -41,12 +41,11 @@ export function DesktopWorkspace({items,placements,onPlace,onOpen}:{items:Deskto
     onPlace(drag.name,{parent:null,x:Math.max(0,Math.min(rect.width-74,drag.originX+dx)),y:Math.max(0,Math.min(rect.height-70,drag.originY+dy))});
     setDropTarget(findFolderBelow(event.clientX,event.clientY,drag.name));
   };
-  const pointerUp=(event:ReactPointerEvent<HTMLButtonElement>,item:DesktopItem)=>{
+  const pointerUp=(event:ReactPointerEvent<HTMLButtonElement>)=>{
     const drag=dragRef.current;
     if(!drag||drag.pointerId!==event.pointerId)return;
     const target=findFolderBelow(event.clientX,event.clientY,drag.name);
     if(drag.moved&&target)onPlace(drag.name,{...(placements[drag.name]??{x:drag.originX,y:drag.originY}),parent:target});
-    if(!drag.moved)onOpen(item);
     dragRef.current=null;setDragging(null);setDropTarget(null);
   };
   const receiveFromWindow=(event:React.DragEvent<HTMLDivElement>)=>{
@@ -68,7 +67,8 @@ export function DesktopWorkspace({items,placements,onPlace,onOpen}:{items:Deskto
         style={{left:`min(${position.x}px, calc(100% - 74px))`,top:`min(${position.y}px, calc(100% - 70px))`}}
         onPointerDown={event=>pointerDown(event,item,index)}
         onPointerMove={pointerMove}
-        onPointerUp={event=>pointerUp(event,item)}
+        onPointerUp={pointerUp}
+        onDoubleClick={()=>onOpen(item)}
         onPointerCancel={()=>{dragRef.current=null;setDragging(null);setDropTarget(null)}}
         title={`${item.content}｜可拖曳整理`}
       ><i>{item.icon}</i><span>{item.name}</span></button>;
@@ -98,9 +98,8 @@ export function FolderContents({folder,items,placements,onPlace,onOpen}:{folder:
       onDragStart={event=>startDrag(event,item.name)}
       onDragOver={event=>{if(isFolder(item))event.preventDefault()}}
       onDrop={event=>{if(isFolder(item)){event.stopPropagation();receive(event,item.name)}}}
-      onClick={()=>{if(!isFolder(item))onOpen(item)}}
-      onDoubleClick={()=>{if(isFolder(item))onOpen(item)}}
+      onDoubleClick={()=>onOpen(item)}
     ><span><i>{item.icon}</i><b>{item.name}</b></span><small>{item.type}</small><p>{item.content}</p>{isFolder(item)&&<em>可放入</em>}</button>)}</div>}
-    <div className="folder-drop-hint">單擊文件即可另開預覽視窗；雙擊資料夾可開啟，項目也能拖曳整理。</div>
+    <div className="folder-drop-hint">單擊只會選取項目；雙擊文件或資料夾才會開啟，項目也能拖曳整理。</div>
   </div>;
 }

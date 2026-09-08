@@ -36,8 +36,8 @@
 .folder-content-head,.folder-item-list>button{display:grid;grid-template-columns:minmax(200px,1.2fr) 100px minmax(180px,1fr);align-items:center}
 .folder-content-head{height:31px;padding:0 14px;border-bottom:1px solid #ddd;background:#f5f5f5;color:#777;font-size:8px}
 .folder-item-list{min-height:0;flex:1;overflow:auto}
-.folder-item-list>button{position:relative;width:100%;min-height:48px;padding:5px 14px;border:0;border-bottom:1px solid #eee;background:white;color:#333;text-align:left;cursor:grab}
-.folder-item-list>button:hover{background:#eaf3ff}.folder-item-list>button:active{cursor:grabbing}
+.folder-item-list>button{position:relative;width:100%;min-height:48px;padding:5px 14px;border:0;border-bottom:1px solid #eee;background:white;color:#333;text-align:left;cursor:pointer}
+.folder-item-list>button:hover{background:#eaf3ff}.folder-item-list>button:active{cursor:pointer}
 .folder-item-list>button>span{display:flex;align-items:center;gap:9px;min-width:0}.folder-item-list>button>span i{font-size:22px;font-style:normal}.folder-item-list>button>span b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:9px}
 .folder-item-list small{font-size:8px;color:#666}.folder-item-list p{margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#777;font-size:8px}.folder-item-list>button>em{position:absolute;right:8px;top:4px;color:#2d72af;font-size:7px;font-style:normal}
 .empty-folder{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#888;text-align:center}.empty-folder i{font-size:53px;font-style:normal}.empty-folder b{margin-top:8px;font-size:13px}.empty-folder p{font-size:9px}
