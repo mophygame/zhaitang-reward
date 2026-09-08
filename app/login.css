@@ -68,7 +68,12 @@
 @keyframes login-sparkle-rise{0%{transform:translate3d(0,0,0) scale(.45);opacity:0}18%{opacity:.9}55%{transform:translate3d(18px,-52vh,0) scale(1);opacity:.75}100%{transform:translate3d(-12px,-108vh,0) scale(.3);opacity:0}}
 @keyframes login-candy-float{0%,100%{transform:translate3d(0,0,0) rotate(-9deg)}50%{transform:translate3d(10px,-17px,0) rotate(10deg)}}
 
-@media(max-width:700px),(orientation:portrait){
+@media(min-width:414px) and (max-width:900px){
+  .login-screen{background-image:url("/ui/bg_login_tablet.png")}
+  .login-button-wrap{left:50%;top:auto;bottom:8%;transform:translateX(-50%)}
+}
+
+@media(max-width:413px){
   .login-screen{background-image:url("/ui/bg_login_mobile.png")}
   .login-button-wrap{left:50%;top:auto;bottom:8%;transform:translateX(-50%)}
   .game-start-button{min-width:190px;padding:13px 43px 12px 58px}

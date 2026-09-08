@@ -61,8 +61,9 @@ export default function RootLayout({
   return (
     <html lang="zh-Hant">
       <head>
-        <link rel="preload" href="/ui/bg_login_desktop.png" as="image" media="(min-width: 701px)"/>
-        <link rel="preload" href="/ui/bg_login_mobile.png" as="image" media="(max-width: 700px)"/>
+        <link rel="preload" href="/ui/bg_login_desktop.png" as="image" media="(min-width: 901px)"/>
+        <link rel="preload" href="/ui/bg_login_tablet.png" as="image" media="(min-width: 414px) and (max-width: 900px)"/>
+        <link rel="preload" href="/ui/bg_login_mobile.png" as="image" media="(max-width: 413px)"/>
         <link rel="preload" href="/ui/bg_office.webp" as="image" media="(min-width: 701px)"/>
         <link rel="preload" href="/ui/bg_office_mobile.png" as="image" media="(max-width: 700px)"/>
       </head>
